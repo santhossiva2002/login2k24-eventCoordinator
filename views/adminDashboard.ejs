@@ -93,7 +93,7 @@
                                     <% } %>
                                     <td><%= member.name %></td>
                                     <td><%= member.email %></td>
-                                    <td><%= member.department %></td>
+                                    <td><%= member.stream ? member.degree + ' - ' + (member.stream || '') +'- Year- '+(member.yearOfStudy|| '') : 'N/A' %></td>
                                     <td><%= member.contactNumber %></td>
                                 </tr>
                             <% }) %>

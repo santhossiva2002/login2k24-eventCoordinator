@@ -37,8 +37,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Event name to collection name mapping
 const eventCollectionMapping = {
-  AlgoCode: 'AlgoCode',
-  codesprint: 'CODESPRINT',
+  algocode: 'AlgoCode',
+  codesprint: 'CodeSprint',
   crickbid: 'CrickBidAuction',
   techiadz: 'Techiadz',
   datathon: 'Datathon',
@@ -363,7 +363,7 @@ function checkAdmin(req, res, next) {
           for (const team of teams) {
             team.membersDetails = await Promise.all(
               team.emails.map(async (email) => {
-                return await User.findOne({ email }).select('name department contactNumber email');
+                return await User.findOne({ email }).select('name  contactNumber email');
               })
             );
           }

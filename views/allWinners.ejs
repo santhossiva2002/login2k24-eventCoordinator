@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Winners</title>
+    <link rel="stylesheet" href="/styles/allWinners.css">
+    <link rel="stylesheet" href="/styles/event.css">
+</head>
+<body>
+    <h1>All Winners</h1>
+
+    <% if (winners.length === 0) { %>
+        <p>No winners have been recorded yet.</p>
+    <% } else { %>
+        <table>
+            <thead>
+                <tr>
+                    <th>Serial No</th>
+                    <th>Winner Team ID</th>
+                    <th>Winner Participants</th>
+                    <th>Runner-Up Team ID</th>
+                    <th>Runner-Up Participants</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% winners.forEach((winner, index) => { %>
+                    <tr>
+                        <!-- Serial number -->
+                        <td><%= index + 1 %></td>
+                        <td><%= winner.winnerTeamId %></td>
+                        <td><%= winner.winnerParticipants.join(', ') %></td>
+                        <td><%= winner.runnerUpTeamId %></td>
+                        <td><%= winner.runnerUpParticipants.join(', ') %></td>
+                    </tr>
+                <% }) %>
+            </tbody>
+        </table>
+    <% } %>
+
+    <!-- <a href="/events">Back to Event Details</a> -->
+    <a href="/logout">Logout</a>
+</body>
+</html>

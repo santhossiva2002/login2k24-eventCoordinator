@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Details</title>
+    <link rel="stylesheet" href="/styles/event.css">
+</head>
+<body>
+    <h1>Event Details</h1>
+    <h2>Event Name: <%= name %></h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Serial No</th>
+                <th>Team ID</th>
+                <th>Student Names</th>
+                <th>Emails</th>
+                <th>Department</th>
+                <th>Contact Number</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% teams.forEach((team, index) => { %>
+                <% team.membersDetails.forEach((member, memberIndex) => { %>
+                    <tr>
+                        <!-- Serial number -->
+                        <td><%= index + 1 %>.<%= memberIndex + 1 %></td> 
+                        <!-- Only show team ID for the first member of each team -->
+                        <td><%= memberIndex === 0 ? team.teamId : '' %></td>
+                        <!-- Display the student name from the team data -->
+                         <td><%= team.studentName[memberIndex] || 'N/A' %></td> 
+                        <td><%= member.email || 'N/A' %></td>
+                        <!-- Display department and degree combined as stream+degree -->
+                        <td><%= member.stream ? member.degree + ' - ' + (member.stream || '') +'- Year- '+(member.yearOfStudy|| '') : 'N/A' %></td>
+                        <td><%= member.contactNumber || 'N/A' %></td>
+                    </tr>
+                <% }) %>
+            <% }) %>
+        </tbody>
+    </table>
+
+    <a href="/winner">Go to Winner Page</a> <!-- Redirect to winner page -->
+    <a href="/logout">Logout</a>
+</body>
+</html>

@@ -1,0 +1,150 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Winner Page</title>
+    <link rel="stylesheet" href="/styles/winner.css">
+</head>
+<body>
+    <h1>Winner and Runner-Up Selection</h1>
+    <form action="/winner" method="POST">
+        <label for="winner">Select Winner Team:</label>
+        <select id="winner" name="winner" required>
+            <option value="">-- Select Winner Team --</option>
+            <% if (teams && teams.length > 0) { %>
+                <% teams.forEach(team => { %>
+                    <option value="<%= team.teamId %>"><%= team.teamId %> - <%= team.studentName.join(', ') %></option>
+                <% }) %>
+            <% } else { %>
+                <option value="">No teams available</option>
+            <% } %>
+        </select>
+
+        <label for="runnerUp">Select Runner-Up Team:</label>
+        <select id="runnerUp" name="runnerUp" required>
+            <option value="">-- Select Runner-Up Team --</option>
+            <% if (teams && teams.length > 0) { %>
+                <% teams.forEach(team => { %>
+                    <option value="<%= team.teamId %>"><%= team.teamId %> - <%= team.studentName.join(', ') %></option>
+                <% }) %>
+            <% } else { %>
+                <option value="">No teams available</option>
+            <% } %>
+        </select>
+
+        <button type="submit">Submit</button>
+    </form>
+
+    <h2>Current Winners</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Event Name</th>
+                <th>Winner Team ID</th>
+                <th>Winner Participants</th>
+                <th>Runner-Up Team ID</th>
+                <th>Runner-Up Participants</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% if (winners && winners.length > 0) { %>
+                <% winners.forEach(winner => { %>
+                    <tr>
+                        <td><%= winner.eventName %></td>
+                        <td><%= winner.winnerTeamId %></td>
+                        <td><%= winner.winnerParticipants.join(', ') %></td>
+                        <td><%= winner.runnerUpTeamId %></td>
+                        <td><%= winner.runnerUpParticipants.join(', ') %></td>
+                    </tr>
+                <% }) %>
+            <% } else { %>
+                <tr>
+                    <td colspan="5">No winners available</td>
+                </tr>
+            <% } %>
+        </tbody>
+    </table>
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Winner Page</title>
+    <link rel="stylesheet" href="/styles/winner.css">
+</head>
+<body>
+    <h1>Winner and Runner-Up Selection</h1>
+
+    <% if (showSelection) { %>
+        <!-- Dropdown for selecting winners -->
+        <form action="/winner" method="POST">
+            <label for="winner">Select Winner Team:</label>
+            <select id="winner" name="winner" required>
+                <option value="">-- Select Winner Team --</option>
+                <% if (teams && teams.length > 0) { %>
+                    <% teams.forEach(team => { %>
+                        <option value="<%= team.teamId %>"><%= team.teamId %> - <%= team.studentName.join(', ') %></option>
+                    <% }) %>
+                <% } else { %>
+                    <option value="">No teams available</option>
+                <% } %>
+            </select>
+
+            <label for="runnerUp">Select Runner-Up Team:</label>
+            <select id="runnerUp" name="runnerUp" required>
+                <option value="">-- Select Runner-Up Team --</option>
+                <% if (teams && teams.length > 0) { %>
+                    <% teams.forEach(team => { %>
+                        <option value="<%= team.teamId %>"><%= team.teamId %> - <%= team.studentName.join(', ') %></option>
+                    <% }) %>
+                <% } else { %>
+                    <option value="">No teams available</option>
+                <% } %>
+            </select>
+
+            <button type="submit">Submit</button>
+        </form>
+    <% } else { %>
+        <p>The winner and runner-up have already been selected for this event.</p>
+    <% } %>
+
+    <h2>Current Winners</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Event Name</th>
+                <th>Winner Team ID</th>
+                <th>Winner Participants</th>
+                <th>Runner-Up Team ID</th>
+                <th>Runner-Up Participants</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% if (winners && winners.length > 0) { %>
+                <% winners.forEach(winner => { %>
+                    <tr>
+                        <td><%= winner.eventName %></td>
+                        <td><%= winner.winnerTeamId %></td>
+                        <td><%= winner.winnerParticipants.join(', ') %></td>
+                        <td><%= winner.runnerUpTeamId %></td>
+                        <td><%= winner.runnerUpParticipants.join(', ') %></td>
+                    </tr>
+                <% }) %>
+            <% } else { %>
+                <tr>
+                    <td colspan="5">No winners available</td>
+                </tr>
+            <% } %>
+        </tbody>
+    </table>
+    <a href="/events">HOME</a>
+    <a href="/logout">Logout</a>
+    
+</body>
+</html>

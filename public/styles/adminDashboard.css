@@ -1,0 +1,202 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    margin: 0;
+    padding: 20px;
+    color: #333;
+}
+
+h1, h2 {
+    text-align: center;
+    color: #333;
+    margin: 20px 0;
+}
+
+/* Form Styles */
+form {
+    width: 50%;
+    margin: 0 auto 20px;
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+label {
+    display: block;
+    margin: 10px 0 5px;
+}
+
+select, .dropdown {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+button, .btn {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    color: #fff;
+}
+
+button {
+    background-color: #007bff;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+.btn {
+    width: 120px;
+    background-color: #28a745;
+    margin: 20px auto;
+}
+
+.btn:hover {
+    background-color: #218838;
+}
+
+/* Table Styles */
+table {
+    width: 80%;
+    margin: 20px auto;
+    border-collapse: collapse;
+    background-color: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+thead {
+    background-color: #007bff;
+    color: #fff;
+}
+
+th, td {
+    padding: 15px;
+    text-align: left;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+/* Link Styles */
+a {
+    display: block;
+    width: 150px;
+    text-align: center;
+    margin: 20px auto;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+}
+
+a:hover {
+    background-color: #0056b3;
+}
+/* Add this to your adminDashboard.css */
+
+/* Style for the event section */
+.event-section {
+    margin: 20px 0;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Style for the winners section */
+.winners-section {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+/* Winners heading */
+.winners-section h3 {
+    margin: 0 0 10px;
+    color: #333;
+    text-align: center;
+}
+
+/* Winners list */
+.winners-section ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* Winners list items */
+.winners-section ul li {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    color: #333;
+}
+
+.winners-section ul li:last-child {
+    border-bottom: none;
+}
+
+/* No winners text */
+.winners-section p {
+    text-align: center;
+    color: #666;
+}
+/* Style for collapsible event sections */
+.event {
+    margin: 20px 0;
+}
+
+.event-header {
+    cursor: pointer;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.event-details {
+    display: none; /* Initially hidden */
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    margin-top: 10px;
+}
+
+.event-details table {
+    width: 100%;
+    margin: 0;
+}
+
+.event-details thead {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.event-details th, td {
+    padding: 10px;
+    text-align: left;
+}
+
+.event-details tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+}

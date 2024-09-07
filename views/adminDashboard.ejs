@@ -1,0 +1,133 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="/styles/adminDashboard.css">
+</head>
+<body>
+    <h1>Admin Dashboard</h1>
+    <a href="/logout">Logout</a>
+    <% eventDetails.forEach(event => { %>
+        <div class="event-section">
+            <h2><%= event.eventName %></h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Serial No</th>
+                        <th>Team ID</th>
+                        <th>Student Names</th>
+                        <th>Emails</th>
+                        <th>Department</th>
+                        <th>Contact Number</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% event.teams.forEach((team, index) => { %>
+                        <% team.membersDetails.forEach((member, memberIndex) => { %>
+                            <tr>
+                                <% if (memberIndex === 0) { %>
+                                    <td rowspan="<%= team.membersDetails.length %>"><%= index + 1 %></td>
+                                    <td rowspan="<%= team.membersDetails.length %>"><%= team.teamId %></td>
+                                <% } %>
+                                <td><%= member.name %></td>
+                                <td><%= member.email %></td>
+                                <td><%= member.department %></td>
+                                <td><%= member.contactNumber %></td>
+                            </tr>
+                        <% }) %>
+                    <% }) %>
+                </tbody>
+            </table>
+            <div class="winners-section">
+                <h3>Winners</h3>
+                <% if (event.winners.length > 0) { %>
+                    <ul>
+                        <% event.winners.forEach(winner => { %>
+                            <li><%= winner.winnerTeamId %> - <%= winner.winnerParticipants %> (Winner)</li>
+                            <li><%= winner.runnerUpTeamId %> - <%= winner.runnerUpParticipants %> (Runner-Up)</li>
+                        <% }) %>
+                    </ul>
+                <% } else { %>
+                    <p>No winners for this event</p>
+                <% } %>
+            </div>
+        </div>
+    <% }) %>
+</body>
+</html> -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="/styles/adminDashboard.css">
+</head>
+<body>
+    <h1>Admin Dashboard</h1>
+    <a href="/logout">Logout</a>
+    <% eventDetails.forEach(event => { %>
+        <div class="event">
+            <div class="event-header"><%= event.eventName %></div>
+            <div class="event-details">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Serial No</th>
+                            <th>Team ID</th>
+                            <th>Student Names</th>
+                            <th>Emails</th>
+                            <th>Department</th>
+                            <th>Contact Number</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% event.teams.forEach((team, index) => { %>
+                            <% team.membersDetails.forEach((member, memberIndex) => { %>
+                                <tr>
+                                    <% if (memberIndex === 0) { %>
+                                        <td rowspan="<%= team.membersDetails.length %>"><%= index + 1 %></td>
+                                        <td rowspan="<%= team.membersDetails.length %>"><%= team.teamId %></td>
+                                    <% } %>
+                                    <td><%= member.name %></td>
+                                    <td><%= member.email %></td>
+                                    <td><%= member.department %></td>
+                                    <td><%= member.contactNumber %></td>
+                                </tr>
+                            <% }) %>
+                        <% }) %>
+                    </tbody>
+                </table>
+                <div class="winners-section">
+                <h3>Winners</h3>
+                <% if (event.winners.length > 0) { %>
+                    <ul>
+                        <% event.winners.forEach(winner => { %>
+                            <li><%= winner.winnerTeamId %> - <%= winner.winnerParticipants %> (Winner)</li>
+                            <li><%= winner.runnerUpTeamId %> - <%= winner.runnerUpParticipants %> (Runner-Up)</li>
+                        <% }) %>
+                    </ul>
+                <% } else { %>
+                    <p>No winners for this event</p>
+                <% } %>
+            </div>
+            </div>
+        </div>
+    <% }) %>
+
+    <script>
+        document.querySelectorAll('.event-header').forEach(header => {
+            header.addEventListener('click', function() {
+                const details = this.nextElementSibling;
+                if (details.style.display === 'block') {
+                    details.style.display = 'none';
+                } else {
+                    details.style.display = 'block';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

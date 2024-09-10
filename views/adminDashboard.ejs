@@ -57,6 +57,8 @@
     <% }) %>
 </body>
 </html> -->
+
+<!-- 
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -126,6 +128,688 @@
                 } else {
                     details.style.display = 'block';
                 }
+            });
+        });
+    </script>
+</body>
+</html> -->
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="/styles/adminDashboard.css">
+</head>
+<body>
+    <h1>Admin Dashboard</h1>
+    <a href="/logout">Logout</a>
+
+   
+    <form method="get" action="/admin-dash">
+        <label for="college">Filter by College:</label>
+        <select name="college" id="college">
+            <option value="">All Colleges</option>
+            <option value="Kongu Engineering College" <%= collegeFilter === 'Kongu Engineering College' ? 'selected' : '' %>>Kongu Engineering College</option>
+           
+         
+                <option value="AC College of Engineering & Technology">AC College of Engineering & Technology</option>
+                <option value="Adaikalamatha College">Adaikalamatha College</option>
+                <option value="Adhiparasakthi College Of Arts And Science">Adhiparasakthi College Of Arts And Science</option>
+                <option value="Adhiparasakthi Engineering College">Adhiparasakthi Engineering College</option>
+                <option value="Adhiyamaan College of Engineering">Adhiyamaan College of Engineering</option>
+                <option value="Ajeenkya DY Patil University">Ajeenkya DY Patil University</option>
+                <option value="Alagappa Chettiar College of Engineering and Technology">Alagappa Chettiar College of Engineering and Technology</option>
+                <option value="Aligarh Muslim University">Aligarh Muslim University</option>
+                <option value="Ambal Professional Group of Institutions">Ambal Professional Group of Institutions</option>
+                <option value="Amity University - Gwalior">Amity University - Gwalior</option>
+                <option value="Amity University - Haryana">Amity University - Haryana</option>
+                <option value="Amity University - Lucknow">Amity University - Lucknow</option>
+                <option value="Amrita College of Engineering and Technology">Amrita College of Engineering and Technology</option>
+                <option value="Amrita School of Arts & Sciences">Amrita School of Arts & Sciences</option>
+                <option value="Amrita University - Coimbatore">Amrita University - Coimbatore</option>
+                <option value="Amrita University - Mysure">Amrita University - Mysure</option>
+                <option value="Anjalai Ammal Mahalingam Engineering College">Anjalai Ammal Mahalingam Engineering College</option>
+                <option value="Anna University - Coimbatore">Anna University - Coimbatore</option>
+                <option value="Anna University -Tiruchirappalli">Anna University -Tiruchirappalli</option>
+                <option value="Annai Mathammal Sheela Engineering College">Annai Mathammal Sheela Engineering College</option>
+                <option value="Annapoorana Engineering College">Annapoorana Engineering College</option>
+                <option value="Apollo Engineering College">Apollo Engineering College</option>
+                <option value="Arasu Engineering College">Arasu Engineering College</option>
+                <option value="ARJ College of Engineering and Technology">ARJ College of Engineering and Technology</option>
+                <option value="ARM College of Engineering and Technology">ARM College of Engineering and Technology</option>
+                <option value="ARS College of Engineering">ARS College of Engineering</option>
+                <option value="Arulanandar College">Arulanandar College</option>
+                <option value="Arulmigu Meenakshi Amman College of Engineering">Arulmigu Meenakshi Amman College of Engineering</option>
+                <option value="Arulmigu Meenakshi Amman College of Engineering Kanchipuram">Arulmigu Meenakshi Amman College of Engineering Kanchipuram</option>
+                <option value="Arunachala College of Engineering for Women">Arunachala College of Engineering for Women</option>
+                <option value="Arunai Engineering College">Arunai Engineering College</option>
+                <option value="Asan Memorial College Of Arts And Science">Asan Memorial College Of Arts And Science</option>
+                <option value="AVC College of Engineering">AVC College of Engineering</option>
+                <option value="Avinashilingam University for Women">Avinashilingam University for Women</option>
+                <option value="Ayya Nadar Janaki Ammal College">Ayya Nadar Janaki Ammal College</option>
+                <option value="Bannari Amman Institute of Technology">Bannari Amman Institute of Technology</option>
+                <option value="Bharath Institute of Higher Education and Research">Bharath Institute of Higher Education and Research</option>
+                <option value="Bharathiar University">Bharathiar University</option>
+                <option value="Bharathidasan Engineering College">Bharathidasan Engineering College</option>
+                <option value="Birla Institute of Technology & Science">Birla Institute of Technology & Science</option>
+                <option value="Bishop Heber College">Bishop Heber College</option>
+                <option value="BITS Pilani">BITS Pilani</option>
+                <option value="C. Abdul Hakeem College of Engineering & Technology">C. Abdul Hakeem College of Engineering & Technology</option>
+                <option value="C.S.I Institute Of Technology">C.S.I Institute Of Technology</option>
+                <option value="Chennai Institute of Technology">Chennai Institute of Technology</option>
+                <option value="Christ University science">Christ University science</option>
+                <option value="Coimbatore Insititute Of Management And Technology">Coimbatore Insititute Of Management And Technology</option>
+                <option value="Coimbatore Institute of Technology">Coimbatore Institute of Technology</option>
+                <option value="College Of Engineering, Guindy">College Of Engineering, Guindy</option>
+                <option value="Crescent Institute Of Science And Technology - Chennai">Crescent Institute Of Science And Technology - Chennai</option>
+                <option value="CSI Bishop Appasamy College Of Arts And Science">CSI Bishop Appasamy College Of Arts And Science</option>
+                <option value="D.G. Vaishnav College">D.G. Vaishnav College</option>
+                <option value="Dr. Mahalingam College of Engineering & Technology">Dr. Mahalingam College of Engineering & Technology</option>
+                <option value="Dr. NGP Arts and Science College">Dr. NGP Arts and Science College</option>
+                <option value="Dr. NGP Institute Of Technology">Dr. NGP Institute Of Technology</option>
+                <option value="Dr. SNS Rajalakshmi College Of Arts And Science">Dr. SNS Rajalakshmi College Of Arts And Science</option>
+                <option value="Dr.G.R.Damodaran College of Science">Dr.G.R.Damodaran College of Science</option>
+                <option value="EGS Pillay Engineering College">EGS Pillay Engineering College</option>
+                <option value="EGS Pillay Engineering College Nagapattinam">EGS Pillay Engineering College Nagapattinam</option>
+                <option value="Erode Arts & Science College">Erode Arts & Science College</option>
+                <option value="Fatima Michael College of Engineering and Technology">Fatima Michael College of Engineering and Technology</option>
+                <option value="GD Goenka University">GD Goenka University</option>
+                <option value="global institute of technology">global institute of technology</option>
+                <option value="Government College For Men">Government College For Men</option>
+                <option value="Government College of Engineering">Government College of Engineering</option>
+                <option value="Government Thirumagal Mills College">Government Thirumagal Mills College</option>
+                <option value="GRT Institute of Engineering and Technology">GRT Institute of Engineering and Technology</option>
+                <option value="Hindusthan College Of Arts And Science">Hindusthan College Of Arts And Science</option>
+                <option value="Hindusthan College of Engineering and Technology">Hindusthan College of Engineering and Technology</option>
+                <option value="Holy Cross College">Holy Cross College</option>
+                <option value="IIT  - Hyderabad">IIT  - Hyderabad</option>
+                <option value="IIT - Bombay">IIT - Bombay</option>
+                <option value="IIT - Chennai">IIT - Chennai</option>
+                <option value="IIT - Delhi">IIT - Delhi</option>
+                <option value="IIT - Dharwad">IIT - Dharwad</option>
+                <option value="IIT - Goa">IIT - Goa</option>
+                <option value="IIT - Guwahati">IIT - Guwahati</option>
+                <option value="IIT - Indore">IIT - Indore</option>
+                <option value="IIT - Jammu">IIT - Jammu</option>
+                <option value="IIT - Jharkhand">IIT - Jharkhand</option>
+                <option value="IIT - Jodhpur">IIT - Jodhpur</option>
+                <option value="IIT - Kanpur">IIT - Kanpur</option>
+                <option value="IIT - Palakkad">IIT - Palakkad</option>
+                <option value="IIT - Patna">IIT - Patna</option>
+                <option value="IIT - Rajpur">IIT - Rajpur</option>
+                <option value="IIT - Roorkee">IIT - Roorkee</option>
+                <option value="IIT - Ropar">IIT - Ropar</option>
+                <option value="IIT - Varanasi">IIT - Varanasi</option>
+                <option value="Indira Institute of Engineering and Technology">Indira Institute of Engineering and Technology</option>
+                <option value="Info Institute Of Engineering">Info Institute Of Engineering</option>
+                <option value="Institute Of Road And Transport Technology">Institute Of Road And Transport Technology</option>
+                <option value="Jadavpur University">Jadavpur University</option>
+                <option value="Jamal Mohamed College">Jamal Mohamed College</option>
+                <option value="Jaya Engineering College">Jaya Engineering College</option>
+                <option value="Jayam College of Engineering and Technology">Jayam College of Engineering and Technology</option>
+                <option value="Jayaram College of Engineering and Technology">Jayaram College of Engineering and Technology</option>
+                <option value="JBAS College For Women">JBAS College For Women</option>
+                <option value="Jeppiaar Engineering College">Jeppiaar Engineering College</option>
+                <option value="Jerusalem College of Engineering">Jerusalem College of Engineering</option>
+                <option value="JKK Nadaraja Women Arts And Science">JKK Nadaraja Women Arts And Science</option>
+                <option value="JKKN Educational Institutions">JKKN Educational Institutions</option>
+                <option value="JNTUH Institute Of Science And Technology">JNTUH Institute Of Science And Technology</option>
+                <option value="Joy University">Joy University</option>
+                <option value="Joy University Tirunelveli">Joy University Tirunelveli</option>
+                <option value="Kalaignar Karunanidhi Institute of Technology">Kalaignar Karunanidhi Institute of Technology</option>
+                <option value="Kalasalingam University">Kalasalingam University</option>
+                <option value="Kamaraj College">Kamaraj College</option>
+                <option value="Kamaraj College of Engineering & Technology">Kamaraj College of Engineering & Technology</option>
+                <option value="Karpaga Vinayaga College of Engineering And Technology">Karpaga Vinayaga College of Engineering And Technology</option>
+                <option value="Karpagam Arts And Science College">Karpagam Arts And Science College</option>
+                <option value="Karpagam College of Engineering">Karpagam College of Engineering</option>
+                <option value="Karunya University">Karunya University</option>
+                <option value="Kathir college of Engineering">Kathir college of Engineering</option>
+                <option value="KCG College of Technology">KCG College of Technology</option>
+                <option value="KGISL Institute Of Information Management">KGISL Institute Of Information Management</option>
+                <option value="KGISL Institute of Technology">KGISL Institute of Technology</option>
+                <option value="Khadir Mohideen College">Khadir Mohideen College</option>
+                <option value="Kingston Engineering College">Kingston Engineering College</option>
+                <option value="KLN College of Engineering">KLN College of Engineering</option>
+                <option value="Kongu Arts And Science College">Kongu Arts And Science College</option>
+
+                <option value="KPR Institute of Engineering and technology">KPR Institute of Engineering and technology</option>
+                <option value="Krishnasamy College of Engineering and Technology">Krishnasamy College of Engineering and Technology</option>
+                <option value="KRS College of Engineering">KRS College of Engineering</option>
+                <option value="KSR College of Engineering">KSR College of Engineering</option>
+                <option value="Kumaraguru College of Technology">Kumaraguru College of Technology</option>
+                <option value="Kurinji College Of Arts And Science">Kurinji College Of Arts And Science</option>
+                <option value="Lady Doak College">Lady Doak College</option>
+                <option value="Latha Mathavan Group of Institution">Latha Mathavan Group of Institution</option>
+                <option value="Lord Jegannath College of Engineering and Technology">Lord Jegannath College of Engineering and Technology</option>
+                <option value="Loyola College">Loyola College</option>
+                <option value="Loyola Institute Of Technology">Loyola Institute Of Technology</option>
+                <option value="M. Kumarasamy College of Engineering">M. Kumarasamy College of Engineering</option>
+                <option value="Madha Engineering College">Madha Engineering College</option>
+                <option value="Madras Christian College">Madras Christian College</option>
+                <option value="Madras Institute of Technology">Madras Institute of Technology</option>
+                <option value="Mahendra Engineering College">Mahendra Engineering College</option>
+                <option value="Mailam Engineering College">Mailam Engineering College</option>
+                <option value="MAM College of Engineering">MAM College of Engineering</option>
+                <option value="Manonmaniam Sundaranar University">Manonmaniam Sundaranar University</option>
+                <option value="Marudhar Kesari Jain College For Women">Marudhar Kesari Jain College For Women</option>
+                <option value="Measi Institute Of Information Technology">Measi Institute Of Information Technology</option>
+                <option value="Meenakshi College For Women">Meenakshi College For Women</option>
+                <option value="Meenakshi College of Engineering">Meenakshi College of Engineering</option>
+                <option value="Meenakshi Ramaswamy Engineering College">Meenakshi Ramaswamy Engineering College</option>
+                <option value="Mepco Schlenk Engineering College">Mepco Schlenk Engineering College</option>
+                <option value="MIT World Peace University">MIT World Peace University</option>
+                <option value="Mohamed Sathak College Of Arts And Science">Mohamed Sathak College Of Arts And Science</option>
+                <option value="Mohamed Sathak Engineering College">Mohamed Sathak Engineering College</option>
+                <option value="MP Nachimuthu M Jaganathan Engineering College">MP Nachimuthu M Jaganathan Engineering College</option>
+                <option value="MRK Institute of technology">MRK Institute of technology</option>
+                <option value="Muthayammal Engineering College">Muthayammal Engineering College</option>
+                <option value="Nadar Saraswathi College Of Arts & Science">Nadar Saraswathi College Of Arts & Science</option>
+                <option value="Nandha Engineering College">Nandha Engineering College</option>
+                <option value="National Engineering College">National Engineering College</option>
+                <option value="Nehru College Of Management">Nehru College Of Management</option>
+                <option value="Nehru Institute of Engineering and Technology">Nehru Institute of Engineering and Technology</option>
+                <option value="Nehru Institute of Information Technology and Management">Nehru Institute of Information Technology and Management</option>
+                <option value="Nesamony Memorial Christian College">Nesamony Memorial Christian College</option>
+                <option value="New Prince Shri Bhavani College of Engineering And Technology">New Prince Shri Bhavani College of Engineering And Technology</option>
+                <option value="NIT - Allahabad">NIT - Allahabad</option>
+                <option value="NIT - Andhra Pradesh">NIT - Andhra Pradesh</option>
+                <option value="NIT - Bhopal">NIT - Bhopal</option>
+                <option value="NIT - Calicut">NIT - Calicut</option>
+                <option value="NIT - Delhi">NIT - Delhi</option>
+                <option value="NIT - Durgapur">NIT - Durgapur</option>
+                <option value="NIT - Goa">NIT - Goa</option>
+                <option value="NIT - Hamirpur">NIT - Hamirpur</option>
+                <option value="NIT - Haryana">NIT - Haryana</option>
+                <option value="NIT - Jaipur">NIT - Jaipur</option>
+                <option value="NIT - Jalandhar">NIT - Jalandhar</option>
+                <option value="NIT - Jamshedpur">NIT - Jamshedpur</option>
+                <option value="NIT - Karnataka">NIT - Karnataka</option>
+                <option value="NIT - Manipur">NIT - Manipur</option>
+                <option value="NIT - Meghalaya">NIT - Meghalaya</option>
+                <option value="NIT - Mizoram">NIT - Mizoram</option>
+                <option value="NIT - Nagpur">NIT - Nagpur</option>
+                <option value="NIT - Papum Pare">NIT - Papum Pare</option>
+                <option value="NIT - Patna">NIT - Patna</option>
+                <option value="NIT - Pudhucherry">NIT - Pudhucherry</option>
+                <option value="NIT - Raipur">NIT - Raipur</option>
+                <option value="NIT - Rourkela">NIT - Rourkela</option>
+                <option value="NIT - Sikkim">NIT - Sikkim</option>
+                <option value="NIT - Silchar">NIT - Silchar</option>
+                <option value="NIT - Surat">NIT - Surat</option>
+                <option value="NIT - Trichy">NIT - Trichy</option>
+                <option value="NIT - Tripura">NIT - Tripura</option>
+                <option value="NIT - Uttarakhand">NIT - Uttarakhand</option>
+                <option value="NIT - Warangal">NIT - Warangal</option>
+                <option value="Oxford College of Engineering">Oxford College of Engineering</option>
+                <option value="Paavai Engineering College">Paavai Engineering College</option>
+                <option value="Pachaiyappa's College">Pachaiyappa's College</option>
+                <option value="Pallavan College of Engineering">Pallavan College of Engineering</option>
+                <option value="Park College Of Engineering And Technology">Park College Of Engineering And Technology</option>
+                <option value="Pavendar Bharathidasan College Of Engineering And Technology">Pavendar Bharathidasan College Of Engineering And Technology</option>
+                <option value="PEE GEE College Of Arts & Science">PEE GEE College Of Arts & Science</option>
+                <option value="Periyar Maniammai Institute of Science & Technology">Periyar Maniammai Institute of Science & Technology</option>
+                <option value="PET Engineering College">PET Engineering College</option>
+                <option value="PGP College Of Arts And Science">PGP College Of Arts And Science</option>
+                <option value="PGP College of Engineering and Technology">PGP College of Engineering and Technology</option>
+                <option value="PKR Arts College For Women">PKR Arts College For Women</option>
+                <option value="Pondicherry University">Pondicherry University</option>
+                <option value="PR Engineering College">PR Engineering College</option>
+                <option value="Prathyusha Engineering College">Prathyusha Engineering College</option>
+                <option value="Presidency College">Presidency College</option>
+                <option value="Prince Shri Venkateshwara Padmavathy Engineering College">Prince Shri Venkateshwara Padmavathy Engineering College</option>
+                <option value="Priyadarshini Engineering College">Priyadarshini Engineering College</option>
+                <option value="Priyadarshini Engineering College - Tirupattur">Priyadarshini Engineering College - Tirupattur</option>
+                <option value="Professional Group Of Institutions">Professional Group Of Institutions</option>
+                <option value="PSG College Of Arts And Science">PSG College Of Arts And Science</option>
+                <option value="PSGR Krishnammal College for Women">PSGR Krishnammal College for Women</option>
+                <option value="PSN College of Engineering And Technology">PSN College of Engineering And Technology</option>
+                <option value="PSNA College of Engineering and Technology">PSNA College of Engineering and Technology</option>
+                <option value="PSV College of Engineering and Technology">PSV College of Engineering and Technology</option>
+                <option value="Quaid-E-Milliath Government College For Women">Quaid-E-Milliath Government College For Women</option>
+                <option value="Queen Mary's College">Queen Mary's College</option>
+                <option value="R V College of Engineering">R V College of Engineering</option>
+                <option value="Rajalakshmi Engineering College">Rajalakshmi Engineering College</option>
+                <option value="Rajiv Gandhi College of Engineering">Rajiv Gandhi College of Engineering</option>
+                <option value="Ranipettai Engineering College, Vellore">Ranipettai Engineering College, Vellore</option>
+                <option value="Rathinam College of Arts and Science">Rathinam College of Arts and Science</option>
+                <option value="RMD Engineering College">RMD Engineering College</option>
+                <option value="RMK Engineering College">RMK Engineering College</option>
+                <option value="Roever Engineering College">Roever Engineering College</option>
+                <option value="RVS College Of Arts And Science">RVS College Of Arts And Science</option>
+                <option value="RVS College of Computer Application">RVS College of Computer Application</option>
+                <option value="RVS College of Engineering">RVS College of Engineering</option>
+                <option value="S Veerasamy Chettiar College of Engineering and Technology">S Veerasamy Chettiar College of Engineering and Technology</option>
+                <option value="SA Engineering College">SA Engineering College</option>
+                <option value="Sacred Heart College">Sacred Heart College</option>
+                <option value="Salem Sowdeswari College">Salem Sowdeswari College</option>
+                <option value="San International Info School">San International Info School</option>
+                <option value="Sankara College Of Science And Commerce">Sankara College Of Science And Commerce</option>
+                <option value="Sarah Tucker College For Women">Sarah Tucker College For Women</option>
+                <option value="Sardar Raja College of Engineering">Sardar Raja College of Engineering</option>
+                <option value="Sastra University">Sastra University</option>
+                <option value="Sasurie College Of Engineering">Sasurie College Of Engineering</option>
+                <option value="Sathyabama University">Sathyabama University</option>
+                <option value="saveetha engineering college">saveetha engineering college</option>
+                <option value="Scott Christian College">Scott Christian College</option>
+                <option value="Selvam College of Technology">Selvam College of Technology</option>
+                <option value="Sembodai Rukmani Varatharajan Engineering College">Sembodai Rukmani Varatharajan Engineering College</option>
+                <option value="Sengunthar Arts and Science College">Sengunthar Arts and Science College</option>
+                <option value="Sengunthar College Of Engineering">Sengunthar College Of Engineering</option>
+                <option value="Shanmuga Industries Arts & Science College">Shanmuga Industries Arts & Science College</option>
+                <option value="Shreenivasa Engineering College">Shreenivasa Engineering College</option>
+                <option value="SIGA College of Management and Computer Science">SIGA College of Management and Computer Science</option>
+                <option value="Sir Issac Newton College of Engineering And Technology">Sir Issac Newton College of Engineering And Technology</option>
+                <option value="Sivanthi Aditanar College">Sivanthi Aditanar College</option>
+                <option value="SKSS Arts College">SKSS Arts College</option>
+                <option value="SNS College of Engineering">SNS College of Engineering</option>
+                <option value="SNS College of Technology">SNS College of Technology</option>
+                <option value="Solamalai College of Engineering">Solamalai College of Engineering</option>
+                <option value="Sona College of Technology">Sona College of Technology</option>
+                <option value="Sourashtra College">Sourashtra College</option>
+                <option value="Sree Amman Arts & Science College">Sree Amman Arts & Science College</option>
+                <option value="Sree Saraswathi Thyagaraja College">Sree Saraswathi Thyagaraja College</option>
+                <option value="SRG Engineering College">SRG Engineering College</option>
+                <option value="Sri Balaji Chockalingam Engineering College">Sri Balaji Chockalingam Engineering College</option>
+                <option value="Sri Chandrasekharendra Saraswathi Viswa Maha Vidyalaya">Sri Chandrasekharendra Saraswathi Viswa Maha Vidyalaya</option>
+                <option value="Sri Krishna Arts and Science College">Sri Krishna Arts and Science College</option>
+                <option value="Sri Krishna College of Engineering and Technology">Sri Krishna College of Engineering and Technology</option>
+                <option value="Sri Meenakshi Government Arts college for women">Sri Meenakshi Government Arts college for women</option>
+                <option value="Sri Muthukumaran Institute of Technology">Sri Muthukumaran Institute of Technology</option>
+                <option value="Sri Ramakrishna College Of Arts & Science For Women">Sri Ramakrishna College Of Arts & Science For Women</option>
+                <option value="Sri Ramakrishna College of Arts and Science">Sri Ramakrishna College of Arts and Science</option>
+                <option value="Sri Ramakrishna Engineering College">Sri Ramakrishna Engineering College</option>
+                <option value="Sri Ramakrishna Mission Vidyalaya College Of Arts & Science">Sri Ramakrishna Mission Vidyalaya College Of Arts & Science</option>
+                <option value="Sri Sai Ram Institute of Technology">Sri Sai Ram Institute of Technology</option>
+                <option value="Sri SaiRam Engineering College">Sri SaiRam Engineering College</option>
+                <option value="Sri Sairam Institute of Technology">Sri Sairam Institute of Technology</option>
+                <option value="Sri Sankara Arts and Science College-MSC">Sri Sankara Arts and Science College-MSC</option>
+                <option value="Sri Sarada College For Women">Sri Sarada College For Women</option>
+                <option value="Sri Sarada Niketan College Of Science For Women">Sri Sarada Niketan College Of Science For Women</option>
+                <option value="Sri Shanmugha College of Engineering and Technology">Sri Shanmugha College of Engineering and Technology</option>
+                <option value="Sri Sivasubramaniya Nadar College of Engineering">Sri Sivasubramaniya Nadar College of Engineering</option>
+                <option value="Sri Subramaniaswamy Government Arts College">Sri Subramaniaswamy Government Arts College</option>
+                <option value="Sri Venkateswara College of Engineering">Sri Venkateswara College of Engineering</option>
+                <option value="SRM - Delhi">SRM - Delhi</option>
+                <option value="SRM Arts And Science College">SRM Arts And Science College</option>
+                <option value="SSM College of Engineering">SSM College of Engineering</option>
+                <option value="ST Hindu College">ST Hindu College</option>
+                <option value="St Josheps College Trichy">St Josheps College Trichy</option>
+                <option value="St. Joseph College of Engineering Bengaluru">St. Joseph College of Engineering Bengaluru</option>
+                <option value="St. Joseph College of Engineering Chennai">St. Joseph College of Engineering Chennai</option>
+                <option value="St. Joseph College of Engineering Kanchipuram">St. Joseph College of Engineering Kanchipuram</option>
+                <option value="St. Xaviers Catholic College of Engineering">St. Xaviers Catholic College of Engineering</option>
+                <option value="Stella Maris College">Stella Maris College</option>
+                <option value="STET School Of Management">STET School Of Management</option>
+                <option value="Syed Ammal Engineering college">Syed Ammal Engineering college</option>
+                <option value="Tagore Engineering College">Tagore Engineering College</option>
+                <option value="Tagore Institute of Engineering and Technology">Tagore Institute of Engineering and Technology</option>
+                <option value="Tamilavel Uma Maheswaranar Karanthai Arts College">Tamilavel Uma Maheswaranar Karanthai Arts College</option>
+                <option value="Tamilnadu College Of Engineering">Tamilnadu College Of Engineering</option>
+                <option value="Thangavelu Engineering College">Thangavelu Engineering College</option>
+                <option value="Thanthai Periyar Government Institute Of Technology">Thanthai Periyar Government Institute Of Technology</option>
+                <option value="Thassim Beevi Abdul Kader College For Women">Thassim Beevi Abdul Kader College For Women</option>
+                <option value="The American College">The American College</option>
+                <option value="The Ethiraj College For Women">The Ethiraj College For Women</option>
+                <option value="The Kavery Engineering College">The Kavery Engineering College</option>
+                <option value="The New College">The New College</option>
+                <option value="The Rajas Engineering College">The Rajas Engineering College</option>
+                <option value="The Standard Fireworks Rajaratnam College For Women">The Standard Fireworks Rajaratnam College For Women</option>
+                <option value="Theivani Ammal College For Women">Theivani Ammal College For Women</option>
+                <option value="Thiagarajar College of Engineering">Thiagarajar College of Engineering</option>
+                <option value="Thirumalai Engineering College">Thirumalai Engineering College</option>
+                <option value="Thiruvalluvar College of Engineering and Technology">Thiruvalluvar College of Engineering and Technology</option>
+                <option value="Tranquebar Bishop Manikam Lutheran College">Tranquebar Bishop Manikam Lutheran College</option>
+                <option value="Trichy Engineering College">Trichy Engineering College</option>
+                <option value="Udaya School of Engineering">Udaya School of Engineering</option>
+                <option value="ULTRA College of Engineering & Technology">ULTRA College of Engineering & Technology</option>
+                <option value="United Institute Of Technology">United Institute Of Technology</option>
+                <option value="University college">University college</option>
+                <option value="University of Delhi">University of Delhi</option>
+                <option value="University of Dundee, Scotland">University of Dundee, Scotland</option>
+                <option value="University of East London">University of East London</option>
+                <option value="University of Hertfordshire">University of Hertfordshire</option>
+                <option value="University of Hyderabad">University of Hyderabad</option>
+                <option value="University of Kerala">University of Kerala</option>
+                <option value="University of Lucknow">University of Lucknow</option>
+                <option value="University of Madras">University of Madras</option>
+                <option value="University Of Mysore">University Of Mysore</option>
+                <option value="V.V. Vanniaperumal College For Women">V.V. Vanniaperumal College For Women</option>
+                <option value="Valliammal College for Women">Valliammal College for Women</option>
+                <option value="Varuvan Vadivelan Institute of Technology">Varuvan Vadivelan Institute of Technology</option>
+                <option value="Vel Tech High Tech Dr. Rangarajan Dr. Sakunthala Engineering College">Vel Tech High Tech Dr. Rangarajan Dr. Sakunthala Engineering College</option>
+                <option value="Velalar College of Engineering and Technology">Velalar College of Engineering and Technology</option>
+                <option value="Velammal College of Engineering and Technology">Velammal College of Engineering and Technology</option>
+                <option value="Velammal Engineering College">Velammal Engineering College</option>
+                <option value="Vellalar College For Women">Vellalar College For Women</option>
+                <option value="VHN Senthikumara Nadar College">VHN Senthikumara Nadar College</option>
+                <option value="Vidyaa Vikas College of Engineering and Technology">Vidyaa Vikas College of Engineering and Technology</option>
+                <option value="Vinayaka Mission's Kirupananda Variyar Engineering College">Vinayaka Mission's Kirupananda Variyar Engineering College</option>
+                <option value="Virudhunagar Hindu Nadar's Senthikumara Nadar College">Virudhunagar Hindu Nadar's Senthikumara Nadar College</option>
+                <option value="VIT - Amaravathi">VIT - Amaravathi</option>
+                <option value="VIT - Vellore">VIT - Vellore</option>
+                <option value="VIT - Chennai">VIT - Chennai</option>
+                <option value="Vivekanandha College Of Arts And Science For Women">Vivekanandha College Of Arts And Science For Women</option>
+                <option value="VSB Engineering College">VSB Engineering College</option>
+                <option value="Womens Christian College">Womens Christian College</option>
+                                    
+                <option value="Others">Others</option>
+        </select>
+        <button type="submit">Apply Filter</button>
+    
+    <div>
+        <h2>Total Students from <%= collegeFilter || 'All Colleges' %>: <%= collegeStudentCount %></h2>
+    </div>
+    </form>
+
+    <% eventDetails.forEach(event => { %>
+        <div class="event">
+            <div class="event-header"><%= event.eventName %></div>
+            <div class="event-details">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Serial No</th>
+                            <th>Team ID</th>
+                            <th>Student Names</th>
+                            <th>Emails</th>
+                            <th>Department</th>
+                            <th>College Name</th>
+                            <th>Contact Number</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% event.teams.forEach((team, index) => { %>
+                            <% team.membersDetails.forEach((member, memberIndex) => { %>
+                                <tr>
+                                    <% if (memberIndex === 0) { %>
+                                        <td rowspan="<%= team.membersDetails.length %>"><%= index + 1 %></td>
+                                        <td rowspan="<%= team.membersDetails.length %>"><%= team.teamId %></td>
+                                    <% } %>
+                                    <td><%= member.studentName %></td>
+                                    <td><%= member.email %></td>
+                                    <td><%= member.stream ? member.degree + ' - ' + (member.stream || '') +'- Year- '+(member.yearOfStudy || '') : 'N/A' %></td>
+                                    <td><%=member.collegeName%></td>
+                                    <td><%= member.contactNumber %></td>
+                                </tr>
+                            <% }) %>
+                        <% }) %>
+                    </tbody>
+                </table>
+                <div class="winners-section">
+                    <h3>Winners</h3>
+                    <% if (event.winners.length > 0) { %>
+                        <ul>
+                            <% event.winners.forEach(winner => { %>
+                                <li><%= winner.winnerTeamId %> - <%= winner.winnerParticipants %> (Winner)</li>
+                                <li><%= winner.runnerUpTeamId %> - <%= winner.runnerUpParticipants %> (Runner-Up)</li>
+                            <% }) %>
+                        </ul>
+                    <% } else { %>
+                        <p>No winners for this event</p>
+                    <% } %>
+                </div>
+            </div>
+        </div>
+    <% }) %>
+
+    <script>
+        document.querySelectorAll('.event-header').forEach(header => {
+            header.addEventListener('click', function() {
+                const details = this.nextElementSibling;
+                if (details.style.display === 'block') {
+                    details.style.display = 'none';
+                } else {
+                    details.style.display = 'block';
+                }
+            });
+        });
+    </script>
+</body>
+</html> -->
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="/styles/adminDashboard.css">
+</head>
+<body>
+    <h1>Admin Dashboard</h1>
+    <a href="/logout">Logout</a>
+
+
+    <form method="get" action="/admin-dash">
+        <label for="college">Filter by College:</label>
+        <select name="college" id="college">
+            <option value="">All Colleges</option>
+            <% colleges.forEach(college => { %>
+                <option value="<%= college %>" <%= collegeFilter === college ? 'selected' : '' %>><%= college %></option>
+            <% }) %>
+        </select>
+        <button type="submit">Apply Filter</button>
+    </form>
+
+
+    <div>
+        <h2>Total Students from <%= collegeFilter || 'All Colleges' %>: <%= collegeStudentCount %></h2>
+    </div>
+
+    <% eventDetails.forEach(event => { %>
+        <div class="event">
+            <div class="event-header"><%= event.eventName %></div>
+            <div class="event-details">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Serial No</th>
+                            <th>Team ID</th>
+                            <th>Student Names</th>
+                            <th>Emails</th>
+                            <th>Department</th>
+                            <th>College Name</th>
+                            <th>Contact Number</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% event.teams.forEach((team, index) => { %>
+                            <% team.membersDetails.forEach((member, memberIndex) => { %>
+                                <tr>
+                                    <% if (memberIndex === 0) { %>
+                                        <td rowspan="<%= team.membersDetails.length %>"><%= index + 1 %></td>
+                                        <td rowspan="<%= team.membersDetails.length %>"><%= team.teamId %></td>
+                                    <% } %>
+                                    <td><%= member.studentName %></td>
+                                    <td><%= member.email %></td>
+                                    <td><%= member.stream ? member.degree + ' - ' + (member.stream || '') +'- Year- '+(member.yearOfStudy || '') : 'N/A' %></td>
+                                    <td><%=member.collegeName%></td>
+                                    <td><%= member.contactNumber %></td>
+
+                                </tr>
+                            <% }) %>
+                        <% }) %>
+                    </tbody>
+                </table>
+                <div class="winners-section">
+                    <h3>Winners</h3>
+                    <% if (event.winners.length > 0) { %>
+                        <ul>
+                            <% event.winners.forEach(winner => { %>
+                                <li><%= winner.winnerTeamId %> - <%= winner.winnerParticipants %> (Winner)</li>
+                                <li><%= winner.runnerUpTeamId %> - <%= winner.runnerUpParticipants %> (Runner-Up)</li>
+                            <% }) %>
+                        </ul>
+                    <% } else { %>
+                        <p>No winners for this event</p>
+                    <% } %>
+                </div>
+            </div>
+        </div>
+    <% }) %>
+
+    <script>
+        document.querySelectorAll('.event-header').forEach(header => {
+            header.addEventListener('click', function() {
+                const details = this.nextElementSibling;
+                if (details.style.display === 'block') {
+                    details.style.display = 'none';
+                } else {
+                    details.style.display = 'block';
+                }
+            });
+        });
+    </script>
+</body>
+</html> -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="/styles/adminDashboard.css">
+</head>
+<body>
+    <h1>Admin Dashboard</h1>
+    <a href="/logout">Logout</a>
+
+    <!-- Filter Form for College Name -->
+    <form method="get" action="/admin-dash">
+        <label for="college">Filter by College:</label>
+        <select name="college" id="college">
+            <option value="">All Colleges</option>
+            <% colleges.forEach(college => { %>
+                <option value="<%= college %>" <%= collegeFilter === college ? 'selected' : '' %>><%= college %></option>
+            <% }) %>
+        </select>
+        <button type="submit">Apply Filter</button>
+    </form>
+
+    <!-- Filter Form for Event Name -->
+    <form method="get" action="/admin-dash">
+        <label for="event">Filter by Event:</label>
+        <select name="event" id="event" onchange="toggleAllUsersDropdown(this.value)">
+            <option value="">All Events</option>
+            <% events.forEach(event => { %>
+                <option value="<%= event.name %>" <%= eventFilter === event.name ? 'selected' : '' %>><%= event.name %></option>
+            <% }) %>
+            <option value="allUsers" <%= eventFilter === 'allUsers' ? 'selected' : '' %>>All Registered Users</option>
+        </select>
+        <button type="submit">Apply Filter</button>
+    </form>
+
+    <!-- Display College Student Count
+    <div>
+        <h2>Total Students from <%= collegeFilter || 'All Colleges' %>: <%= collegeStudentCount %></h2>
+    </div> -->
+
+    <!-- Display Event Details -->
+    <% if (eventFilter !== 'allUsers') { %>
+        <% eventDetails.forEach(event => { %>
+            <div class="event">
+                <div class="event-header"><%= event.eventName %></div>
+                <div class="event-details">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Serial No</th>
+                                <th>Team ID</th>
+                                <th>Student Names</th>
+                                <th>Emails</th>
+                                <th>Department</th>
+                                <th>College Name</th>
+                                <th>Contact Number</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% event.teams.forEach((team, index) => { %>
+                                <% team.membersDetails.forEach((member, memberIndex) => { %>
+                                    <tr>
+                                        <% if (memberIndex === 0) { %>
+                                            <td rowspan="<%= team.membersDetails.length %>"><%= index + 1 %></td>
+                                            <td rowspan="<%= team.membersDetails.length %>"><%= team.teamId %></td>
+                                        <% } %>
+                                        <td><%= member.studentName %></td>
+                                        <td><%= member.email %></td>
+                                        <td><%= member.stream ? member.degree + ' - ' + (member.stream || '') +'- Year- '+(member.yearOfStudy || '') : 'N/A' %></td>
+                                        <td><%= member.collegeName %></td>
+                                        <td><%= member.contactNumber %></td>
+                                    </tr>
+                                <% }) %>
+                            <% }) %>
+                        </tbody>
+                    </table>
+                    <div class="winners-section">
+                        <h3>Winners</h3>
+                        <% if (event.winners.length > 0) { %>
+                            <ul>
+                                <% event.winners.forEach(winner => { %>
+                                    <li><%= winner.winnerTeamId %> - <%= winner.winnerParticipants %> (Winner)</li>
+                                    <li><%= winner.runnerUpTeamId %> - <%= winner.runnerUpParticipants %> (Runner-Up)</li>
+                                <% }) %>
+                            </ul>
+                        <% } else { %>
+                            <p>No winners for this event</p>
+                        <% } %>
+                    </div>
+                </div>
+            </div>
+        <% }) %>
+    <% } else { %>
+        <!-- Display All Registered Users when "All Registered Users" is selected -->
+        <div id="user-details">
+            <h2>All Registered Users</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Serial No</th>
+                        <th>Student Name</th>
+                        <th>College</th>
+                        <th>Degree</th>
+                        <th>Email</th>
+                        <th>Contact Number</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% allUsers.forEach((user, index) => { %>
+                        <tr>
+                            <td><%= index + 1 %></td>
+                            <td><%= user.studentName %></td>
+                            <td><%= user.collegeName %></td>
+                            <td><%= user.degree + ' - '+(user.yearOfStudy || '')+'Year'%></td>
+                            <td><%= user.email %></td>
+                            <td><%= user.contactNumber %></td>
+                        </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+        </div>
+    <% } %>
+
+    <script>
+        // Function to toggle the visibility of the "All Registered Users" dropdown section
+        function toggleAllUsersDropdown(selectedValue) {
+            const userDetails = document.getElementById('user-details');
+            if (selectedValue === 'allUsers') {
+                userDetails.style.display = 'block';
+            } else {
+                userDetails.style.display = 'none';
+            }
+        }
+
+        // Initial setup to handle the visibility of the "All Registered Users" section
+        document.addEventListener('DOMContentLoaded', () => {
+            toggleAllUsersDropdown('<%= eventFilter %>');
+        });
+
+        // Toggle event details
+        document.querySelectorAll('.event-header').forEach(header => {
+            header.addEventListener('click', function() {
+                const details = this.nextElementSibling;
+                details.style.display = details.style.display === 'block' ? 'none' : 'block';
             });
         });
     </script>

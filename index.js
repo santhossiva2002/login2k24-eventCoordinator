@@ -346,46 +346,108 @@ function checkAdmin(req, res, next) {
       res.redirect('/'); // Redirect to the home page or another appropriate route
     }
   }
-  app.get('/admin-dash', checkAdmin, async (req, res) => {
-    try {
-      const eventDetails = [];
-      const events = await Event.find({});
+//   app.get('/admin-dash', checkAdmin, async (req, res) => {
+//     try {
+//       const eventDetails = [];
+//       const events = await Event.find({});
   
-      for (const event of events) {
-        const collectionName = eventCollectionMapping[event.name];
-        if (collectionName) {
-          const collection = mongoose.connection.collection(collectionName);
+//       for (const event of events) {
+//         const collectionName = eventCollectionMapping[event.name];
+//         if (collectionName) {
+//           const collection = mongoose.connection.collection(collectionName);
   
-          // Fetch all registered teams for the event
-          const teams = await collection.find({}).toArray();
+//           // Fetch all registered teams for the event
+//           const teams = await collection.find({}).toArray();
   
-          // Fetch details of team members
-          for (const team of teams) {
-            team.membersDetails = await Promise.all(
-              team.emails.map(async (email) => {
-                return await User.findOne({ email }).select('name  contactNumber email');
-              })
-            );
-          }
+//           // Fetch details of team members
+//           for (const team of teams) {
+//             team.membersDetails = await Promise.all(
+//               team.emails.map(async (email) => {
+//                 return await User.findOne({ email }).select('name  contactNumber email');
+//               })
+//             );
+//           }
   
-          // Fetch winners for the event
-          const winners = await Winner.find({ eventName: event.name });
+//           // Fetch winners for the event
+//           const winners = await Winner.find({ eventName: event.name });
   
-          eventDetails.push({
-            eventName: event.name,
-            teams,
-            winners
-          });
-        }
-      }
+//           eventDetails.push({
+//             eventName: event.name,
+//             teams,
+//             winners
+//           });
+//         }
+//       }
   
-      // Render the admin dashboard page with all event details
-      res.render('adminDashboard', { eventDetails });
-    } catch (error) {
-      console.error('Error fetching admin dashboard data:', error);
-      res.status(500).render('adminDashboard', { error: 'Error loading admin dashboard data', eventDetails: [] });
-    }
-  });
+//       // Render the admin dashboard page with all event details
+//       res.render('adminDashboard', { eventDetails });
+//     } catch (error) {
+//       console.error('Error fetching admin dashboard data:', error);
+//       res.status(500).render('adminDashboard', { error: 'Error loading admin dashboard data', eventDetails: [] });
+//     }
+//   });
+
+
+// app.get('/admin-dash', checkAdmin, async (req, res) => {
+//     try {
+//       const collegeFilter = req.query.college || ''; // Get the college filter from query params
+//       const eventDetails = [];
+//       const events = await Event.find({});
+//       let collegeStudentCount = 0; // Initialize the count of college students
+  
+//       for (const event of events) {
+//         const collectionName = eventCollectionMapping[event.name];
+//         if (collectionName) {
+//           const collection = mongoose.connection.collection(collectionName);
+  
+//           // Fetch all registered teams for the event
+//           const teams = await collection.find({}).toArray();
+  
+//           // Fetch details of team members with optional college filtering
+//           for (const team of teams) {
+//             team.membersDetails = await Promise.all(
+//               team.emails.map(async (email) => {
+//                 const query = { email };
+//                 if (collegeFilter) {
+//                   query.collegeName = collegeFilter;
+//                 }
+//                 const user = await User.findOne(query).select('studentName contactNumber email collegeName degree stream yearOfStudy');
+//                 if (user) {
+//                   // Increment the count if the user matches the filter
+//                   if (collegeFilter && user.collegeName === collegeFilter) {
+//                     collegeStudentCount++;
+//                   }
+//                   return user;
+//                 }
+//                 return null;
+//               })
+//             );
+  
+//             // Remove teams with no members matching the filter
+//             team.membersDetails = team.membersDetails.filter(member => member);
+//           }
+  
+//           // Filter out teams that have no members after applying the college filter
+//           const filteredTeams = teams.filter(team => team.membersDetails.length > 0);
+  
+//           // Fetch winners for the event
+//           const winners = await Winner.find({ eventName: event.name });
+  
+//           eventDetails.push({
+//             eventName: event.name,
+//             teams: filteredTeams,
+//             winners
+//           });
+//         }
+//       }
+  
+//       // Render the admin dashboard page with all event details
+//       res.render('adminDashboard', { eventDetails, collegeFilter, collegeStudentCount });
+//     } catch (error) {
+//       console.error('Error fetching admin dashboard data:', error);
+//       res.status(500).render('adminDashboard', { error: 'Error loading admin dashboard data', eventDetails: [], collegeStudentCount: 0 });
+//     }
+//   });
   
 //   app.get('/admin-dash', checkAdmin, async (req, res) => {
 //     try {
@@ -427,3 +489,160 @@ function checkAdmin(req, res, next) {
 //     }
 //   });
   
+// app.get('/admin-dash', checkAdmin, async (req, res) => {
+//     try {
+//       const collegeFilter = req.query.college || ''; // Get the college filter from query params
+//       const eventDetails = [];
+//       const events = await Event.find({});
+//       let collegeStudentCount = 0; // Initialize the count of college students
+//       let collegeNames = new Set(); // Use a Set to store unique college names
+  
+//       for (const event of events) {
+//         const collectionName = eventCollectionMapping[event.name];
+//         if (collectionName) {
+//           const collection = mongoose.connection.collection(collectionName);
+  
+//           // Fetch all registered teams for the event
+//           const teams = await collection.find({}).toArray();
+  
+//           // Fetch details of team members with optional college filtering
+//           for (const team of teams) {
+//             team.membersDetails = await Promise.all(
+//               team.emails.map(async (email) => {
+//                 const query = { email };
+//                 if (collegeFilter) {
+//                   query.collegeName = collegeFilter;
+//                 }
+//                 const user = await User.findOne(query).select('studentName contactNumber email collegeName degree stream yearOfStudy');
+//                 if (user) {
+//                   // Add the college name to the set
+//                   collegeNames.add(user.collegeName);
+  
+//                   // Increment the count if the user matches the filter
+//                   if (collegeFilter && user.collegeName === collegeFilter) {
+//                     collegeStudentCount++;
+//                   }
+//                   return user;
+//                 }
+//                 return null;
+//               })
+//             );
+  
+//             // Remove teams with no members matching the filter
+//             team.membersDetails = team.membersDetails.filter(member => member);
+//           }
+  
+//           // Filter out teams that have no members after applying the college filter
+//           const filteredTeams = teams.filter(team => team.membersDetails.length > 0);
+  
+//           // Fetch winners for the event
+//           const winners = await Winner.find({ eventName: event.name });
+  
+//           eventDetails.push({
+//             eventName: event.name,
+//             teams: filteredTeams,
+//             winners
+//           });
+//         }
+//       }
+  
+//       // Convert Set to Array for EJS
+//       const collegesArray = Array.from(collegeNames);
+  
+//       // Render the admin dashboard page with all event details
+//       res.render('adminDashboard', { eventDetails, collegeFilter, collegeStudentCount, colleges: collegesArray });
+//     } catch (error) {
+//       console.error('Error fetching admin dashboard data:', error);
+//       res.status(500).render('adminDashboard', { error: 'Error loading admin dashboard data', eventDetails: [], collegeStudentCount: 0, colleges: [] });
+//     }
+//   });
+app.get('/admin-dash', checkAdmin, async (req, res) => {
+    try {
+        const collegeFilter = req.query.college || ''; // Get the college filter from query params
+        const eventFilter = req.query.event || ''; // Get the event filter from query params
+        const eventDetails = [];
+        const events = await Event.find({});
+        let collegeStudentCount = 0; // Initialize the count of college students
+        let collegeNames = new Set(); // Use a Set to store unique college names
+
+        // Fetch all user details
+        const allUsers = await User.find({}).select('studentName contactNumber email yearOfStudy collegeName degree');
+
+        for (const event of events) {
+            const collectionName = eventCollectionMapping[event.name];
+            if (collectionName) {
+                const collection = mongoose.connection.collection(collectionName);
+
+                // Fetch all registered teams for the event
+                const teams = await collection.find({}).toArray();
+
+                // Fetch details of team members with optional college filtering
+                for (const team of teams) {
+                    team.membersDetails = await Promise.all(
+                        team.emails.map(async (email) => {
+                            const query = { email };
+                            if (collegeFilter) {
+                                query.collegeName = collegeFilter;
+                            }
+                            const user = await User.findOne(query).select('name contactNumber email collegeName degree stream yearOfStudy');
+                            if (user) {
+                                // Add the college name to the set
+                                collegeNames.add(user.collegeName);
+
+                                // Increment the count if the user matches the filter
+                                if (collegeFilter && user.collegeName === collegeFilter) {
+                                    collegeStudentCount++;
+                                }
+                                return user;
+                            }
+                            return null;
+                        })
+                    );
+
+                    // Remove teams with no members matching the filter
+                    team.membersDetails = team.membersDetails.filter(member => member);
+                }
+
+                // Filter out teams that have no members after applying the college filter
+                const filteredTeams = teams.filter(team => team.membersDetails.length > 0);
+
+                // Fetch winners for the event
+                const winners = await Winner.find({ eventName: event.name });
+
+                eventDetails.push({
+                    eventName: event.name,
+                    teams: filteredTeams,
+                    winners
+                });
+            }
+        }
+
+        // Convert Set to Array for EJS
+        const collegesArray = Array.from(collegeNames);
+
+        // If no event is selected, show all events
+        const filteredEventDetails = eventFilter ? eventDetails.filter(event => event.eventName === eventFilter) : eventDetails;
+
+        // Render the admin dashboard page with all event details and user details
+        res.render('adminDashboard', { 
+            eventDetails: filteredEventDetails, 
+            collegeFilter, 
+            collegeStudentCount, 
+            colleges: collegesArray, 
+            events, 
+            eventFilter, 
+            allUsers 
+        });
+    } catch (error) {
+        console.error('Error fetching admin dashboard data:', error);
+        res.status(500).render('adminDashboard', { 
+            error: 'Error loading admin dashboard data', 
+            eventDetails: [], 
+            collegeStudentCount: 0, 
+            colleges: [], 
+            events: [], 
+            eventFilter: '', 
+            allUsers: [] 
+        });
+    }
+});

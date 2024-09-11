@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -38,6 +38,100 @@
             </tbody>
         </table>
     <% } %>
+
+    <a href="/logout">Logout</a>
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accommodation Details</title>
+    <link rel="stylesheet" href="/styles/event.css">
+    <script>
+        function filterData() {
+            const selectedOption = document.getElementById('filter').value;
+            document.getElementById('userTable').style.display = selectedOption === 'users' ? 'block' : 'none';
+            document.getElementById('alumniTable').style.display = selectedOption === 'alumni' ? 'block' : 'none';
+        }
+    </script>
+</head>
+<body>
+    <h1>Users with Accommodation</h1>
+
+    <!-- Dropdown to select either Users or Alumni -->
+    <label for="filter">Filter By:</label>
+    <select id="filter" onchange="filterData()">
+        <option value="users">Users</option>
+        <option value="alumni">Alumni</option>
+    </select>
+
+    <!-- Users Table -->
+    <div id="userTable">
+        <% if (users.length === 0) { %>
+            <p>No users have registered for accommodation yet.</p>
+        <% } else { %>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Serial No</th>
+                        <th>Student Name</th>
+                        <th>Roll Number</th>
+                        <th>College Name</th>
+                        <th>Email</th>
+                        <th>Contact Number</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% users.forEach((user, index) => { %>
+                        <tr>
+                            <td><%= index + 1 %></td>
+                            <td><%= user.studentName %></td>
+                            <td><%= user.rollNumber %></td>
+                            <td><%= user.collegeName %></td>
+                            <td><%= user.email %></td>
+                            <td><%= user.contactNumber %></td>
+                        </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+        <% } %>
+    </div>
+
+    <!-- Alumni Table -->
+    <div id="alumniTable" style="display: none;">
+        <% if (alumni.length === 0) { %>
+            <p>No alumni have registered for accommodation yet.</p>
+        <% } else { %>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Serial No</th>
+                        <th>Alumnus Name</th>
+                        <th>Roll Number</th>
+                        <th>Stream</th>
+                        <th>Email</th>
+                        <th>Contact Number</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% alumni.forEach((alumnus, index) => { %>
+                        <tr>
+                            <td><%= index + 1 %></td>
+                            <td><%= alumnus.alumnusName %></td>
+                            <td><%= alumnus.rollNumber %></td>
+                            <td><%= alumnus.stream %></td>
+                            <td><%= alumnus.emailAddress %></td>
+                            <td><%= alumnus.contactNumber %></td>
+                        </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+        <% } %>
+    </div>
 
     <a href="/logout">Logout</a>
 </body>

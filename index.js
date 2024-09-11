@@ -6,6 +6,7 @@ const Event = require('./models/Event'); // Ensure correct path
 const Winner = require('./models/winnerSchema'); // Ensure correct path
 // Import the User model
 const User = require('./models/UserRegister'); // Adjust the path if necessary
+const Signup = require('./models/alumnusSchema');
 
 
 
@@ -131,7 +132,7 @@ app.get('/events', async (req, res) => {
       for (const team of teams) {
         team.membersDetails = await Promise.all(
           team.emails.map(async (email) => {
-            return await User.findOne({ email }).select('stream degree yearOfStudy collegeName contactNumber email');
+            return await User.findOne({ email }).select('stream degree yearOfStudy contactNumber email');
           })
         );
       }
@@ -143,33 +144,6 @@ app.get('/events', async (req, res) => {
     }
   });
   
-// app.get('/winner', async (req, res) => {
-//   if (!req.session.name) {
-//     return res.redirect('/');
-//   }
-//   try {
-//     const collectionName = eventCollectionMapping[req.session.name];
-
-//     if (!collectionName) {
-//       return res.status(404).render('winner', { error: 'Event not found', teams: [], winners: [] });
-//     }
-
-//     // Fetch all teams
-//     const collection = mongoose.connection.collection(collectionName);
-//     const teams = await collection.find({}).toArray();
-//     console.log('Teams fetched:', teams);
-
-//     // Fetch current winners
-//     const winners = await Winner.find({ eventName: req.session.name });
-//     console.log('Winners fetched:', winners);
-
-//     // Render the winner page with teams and winners
-//     res.render('winner', { teams, winners });
-//   } catch (error) {
-//     console.error('Error fetching data:', error);
-//     res.status(500).render('winner', { error: 'Error loading winner data', teams: [], winners: [] });
-//   }
-// });
 
 app.get('/winner', async (req, res) => {
     if (!req.session.name) {
@@ -306,39 +280,34 @@ function checkAcc(req, res, next) {
     }
 }
 
-app.get('/accommodation', checkAcc, async (req, res) => {
-    try {
-        // Fetch users with accommodation set to 'Yes'
-        const usersWithAccommodation = await User.find({ accommodation: 'Yes' });
+// app.get('/accommodation', checkAcc, async (req, res) => {
+//     try {
+//         // Fetch users with accommodation set to 'Yes'
+//         const usersWithAccommodation = await User.find({ accommodation: 'Yes' });
         
-        res.render('accommodation', { users: usersWithAccommodation });
-    } catch (error) {
-        console.error('Error fetching users with accommodation:', error);
-        res.status(500).render('accommodation', { users: [], error: 'Error fetching users with accommodation' });
-    }
+//         res.render('accommodation', { users: usersWithAccommodation });
+//     } catch (error) {
+//         console.error('Error fetching users with accommodation:', error);
+//         res.status(500).render('accommodation', { users: [], error: 'Error fetching users with accommodation' });
+//     }
+// });
+
+app.get('/accommodation', checkAcc, async (req, res) => {
+  try {
+      // Fetch users with accommodation set to 'Yes' from both collections
+      const usersWithAccommodation = User.find({ accommodation: 'Yes' });
+      const alumniWithAccommodation = Signup.find({ accommodationRequired: true }).sort({ createdAt: 1 });
+
+      // Execute both queries concurrently
+      const [users, alumni] = await Promise.all([usersWithAccommodation, alumniWithAccommodation]);
+
+      res.render('accommodation', { users, alumni });
+  } catch (error) {
+      console.error('Error fetching users with accommodation:', error);
+      res.status(500).render('accommodation', { users: [], alumni: [], error: 'Error fetching users with accommodation' });
+  }
 });
 
-// app.post('/accommodation/save', async (req, res) => {
-//     const selectedUserIds = req.body.selectedUsers;
-  
-//     if (!selectedUserIds || !Array.isArray(selectedUserIds)) {
-//       return res.status(400).send('No users selected');
-//     }
-  
-//     try {
-//       // Delete selected users from the Accommodation collection
-//       await Accommodation.deleteMany({ _id: { $in: selectedUserIds } });
-  
-//       // Optionally, fetch updated data and render the accommodation page
-//       const usersWithAccommodation = await User.find({ accommodation: 'Yes' });
-  
-//       res.render('accommodation', { users: usersWithAccommodation, success: 'Selected users have been deleted.' });
-//     } catch (error) {
-//       console.error('Error deleting selected users:', error);
-//       res.status(500).render('accommodation', { users: [], error: 'Error deleting selected users' });
-//     }
-//   });
-  
 function checkAdmin(req, res, next) {
     if (req.session.name === 'admin') {
       next(); // Proceed to the route handler
@@ -346,149 +315,7 @@ function checkAdmin(req, res, next) {
       res.redirect('/'); // Redirect to the home page or another appropriate route
     }
   }
-//   app.get('/admin-dash', checkAdmin, async (req, res) => {
-//     try {
-//       const eventDetails = [];
-//       const events = await Event.find({});
-  
-//       for (const event of events) {
-//         const collectionName = eventCollectionMapping[event.name];
-//         if (collectionName) {
-//           const collection = mongoose.connection.collection(collectionName);
-  
-//           // Fetch all registered teams for the event
-//           const teams = await collection.find({}).toArray();
-  
-//           // Fetch details of team members
-//           for (const team of teams) {
-//             team.membersDetails = await Promise.all(
-//               team.emails.map(async (email) => {
-//                 return await User.findOne({ email }).select('name  contactNumber email');
-//               })
-//             );
-//           }
-  
-//           // Fetch winners for the event
-//           const winners = await Winner.find({ eventName: event.name });
-  
-//           eventDetails.push({
-//             eventName: event.name,
-//             teams,
-//             winners
-//           });
-//         }
-//       }
-  
-//       // Render the admin dashboard page with all event details
-//       res.render('adminDashboard', { eventDetails });
-//     } catch (error) {
-//       console.error('Error fetching admin dashboard data:', error);
-//       res.status(500).render('adminDashboard', { error: 'Error loading admin dashboard data', eventDetails: [] });
-//     }
-//   });
 
-
-// app.get('/admin-dash', checkAdmin, async (req, res) => {
-//     try {
-//       const collegeFilter = req.query.college || ''; // Get the college filter from query params
-//       const eventDetails = [];
-//       const events = await Event.find({});
-//       let collegeStudentCount = 0; // Initialize the count of college students
-  
-//       for (const event of events) {
-//         const collectionName = eventCollectionMapping[event.name];
-//         if (collectionName) {
-//           const collection = mongoose.connection.collection(collectionName);
-  
-//           // Fetch all registered teams for the event
-//           const teams = await collection.find({}).toArray();
-  
-//           // Fetch details of team members with optional college filtering
-//           for (const team of teams) {
-//             team.membersDetails = await Promise.all(
-//               team.emails.map(async (email) => {
-//                 const query = { email };
-//                 if (collegeFilter) {
-//                   query.collegeName = collegeFilter;
-//                 }
-//                 const user = await User.findOne(query).select('studentName contactNumber email collegeName degree stream yearOfStudy');
-//                 if (user) {
-//                   // Increment the count if the user matches the filter
-//                   if (collegeFilter && user.collegeName === collegeFilter) {
-//                     collegeStudentCount++;
-//                   }
-//                   return user;
-//                 }
-//                 return null;
-//               })
-//             );
-  
-//             // Remove teams with no members matching the filter
-//             team.membersDetails = team.membersDetails.filter(member => member);
-//           }
-  
-//           // Filter out teams that have no members after applying the college filter
-//           const filteredTeams = teams.filter(team => team.membersDetails.length > 0);
-  
-//           // Fetch winners for the event
-//           const winners = await Winner.find({ eventName: event.name });
-  
-//           eventDetails.push({
-//             eventName: event.name,
-//             teams: filteredTeams,
-//             winners
-//           });
-//         }
-//       }
-  
-//       // Render the admin dashboard page with all event details
-//       res.render('adminDashboard', { eventDetails, collegeFilter, collegeStudentCount });
-//     } catch (error) {
-//       console.error('Error fetching admin dashboard data:', error);
-//       res.status(500).render('adminDashboard', { error: 'Error loading admin dashboard data', eventDetails: [], collegeStudentCount: 0 });
-//     }
-//   });
-  
-//   app.get('/admin-dash', checkAdmin, async (req, res) => {
-//     try {
-//       const eventDetails = [];
-  
-//       // Fetch event names from the Event collection
-//       const events = await Event.find({});
-  
-//       for (const event of events) {
-//         const collectionName = eventCollectionMapping[event.name];
-//         if (collectionName) {
-//           const collection = mongoose.connection.collection(collectionName);
-  
-//           // Fetch all registered teams for the event
-//           const teams = await collection.find({}).toArray();
-  
-//           // Fetch winners for the event
-//           const winners = await Winner.find({ eventName: event.name });
-  
-//           // Map `studentName` to `members`
-//           const teamsWithMembers = teams.map(team => ({
-//             ...team,
-//             members: team.studentName || []  // Map studentName to members
-//           }));
-  
-//           eventDetails.push({
-//             eventName: event.name,
-//             teams: teamsWithMembers,
-//             winners
-//           });
-//         }
-//       }
-  
-//       // Render the admin dashboard page with all event details
-//       res.render('adminDashboard', { eventDetails });
-//     } catch (error) {
-//       console.error('Error fetching admin dashboard data:', error);
-//       res.status(500).render('adminDashboard', { error: 'Error loading admin dashboard data', eventDetails: [] });
-//     }
-//   });
-  
 // app.get('/admin-dash', checkAdmin, async (req, res) => {
 //     try {
 //       const collegeFilter = req.query.college || ''; // Get the college filter from query params

@@ -34,7 +34,7 @@
                          <td><%= team.studentName[memberIndex] || 'N/A' %></td> 
                         <td><%= member.email || 'N/A' %></td>
                         <!-- Display department and degree combined as stream+degree -->
-                        <td><%= member.stream ? member.degree + ' - ' + (member.stream || '') +'- Year- '+(member.yearOfStudy|| '')+' '+member.collegeName : 'N/A' %></td>
+                        <td><%= member.stream ? member.degree + ' - ' + (member.stream || '') +'- Year- '+(member.yearOfStudy|| '')+'( '+member.collegeName+')' : 'N/A' %></td>
                         <td><%= member.contactNumber || 'N/A' %></td>
                     </tr>
                 <% }) %>

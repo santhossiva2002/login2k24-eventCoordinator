@@ -132,7 +132,7 @@ app.get('/events', async (req, res) => {
       for (const team of teams) {
         team.membersDetails = await Promise.all(
           team.emails.map(async (email) => {
-            return await User.findOne({ email }).select('stream degree yearOfStudy collegeName contactNumber email');
+            return await User.findOne({ email }).select('stream degree gender yearOfStudy collegeName contactNumber email');
           })
         );
       }
